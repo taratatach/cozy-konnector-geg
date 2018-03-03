@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "name": "Generali",
+  "type": "node",
+  "slug": "generali",
+  "description": "description",
+  "source": "git://github.com/carrieje/cozy-konnector-generali.git",
+  "locales": {
+    "fr": {
+      "permissions": {
+        "bills": {
+          "description": "Utilisé pour sauvegarder les données de facturation"
+        },
+        "files": {
+          "description": "Utilisé pour sauvegarder les factures"
+        },
+        "accounts": {
+          "description": "Utilisé pour récupérer les informations de votre compte"
+        }
+      }
+    }
+  },
+  "permissions": {
+    "bills": {
+      "description": "Required to save the bills data",
+      "type": "io.cozy.bills"
+    },
+    "files": {
+      "description": "Required to save the bills",
+      "type": "io.cozy.files"
+    },
+    "bankoperations": {
+      "description": "Required to link the bills with their bank operation",
+      "type": "io.cozy.bank.operations"
+    },
+    "accounts": {
+      "description": "Required to get the account's data",
+      "type": "io.cozy.accounts",
+      "verbs": ["GET"]
+    }
+  },
+  "developer": {
+    "name": "Jeremy Carrier",
+    "url": "https://github.com/carrieje"
+  }
+}
