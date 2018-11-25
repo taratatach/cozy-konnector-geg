@@ -1,10 +1,33 @@
 {
   "version": "1.0.0",
-  "name": "Generali",
-  "type": "node",
-  "slug": "generali",
-  "description": "description",
-  "source": "git://github.com/carrieje/cozy-konnector-generali.git",
+  "name": "GEG",
+  "type": "konnector",
+  "language": "node",
+  "slug": "geg",
+  "description": "Récupérez vos factures de gaz et électricité depuis votre compte Gaz et Électricité de Grenoble.",
+  "source": "git://github.com/taratatach/cozy-konnector-geg.git",
+  "editor": "taratatach",
+  "vendor_link": "",
+  "categories": [
+    "energy",
+  ],
+  "fields": {
+    "login": {
+      "type":"email"
+    },
+    "password": {
+      "type": "password"
+    },
+    "advancedFields": {
+      "folderPath": {
+         "advanced": false,
+         "isRequired": true
+       }
+     }
+  },
+  "data_types": [
+    "bill"
+  ],
   "locales": {
     "fr": {
       "permissions": {
@@ -40,7 +63,8 @@
     }
   },
   "developer": {
-    "name": "Jeremy Carrier",
-    "url": "https://github.com/carrieje"
-  }
+    "name": "Erwan Guyader",
+    "url": "https://github.com/taratatach"
+  },
+  "manifest_version": "2"
 }
