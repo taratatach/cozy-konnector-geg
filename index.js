@@ -1,12 +1,7 @@
 const errors = require('request-promise/errors')
 const { log, BaseKonnector } = require('cozy-konnector-libs')
-const {
-  login,
-  openContract,
-  openBills,
-  inventoryBills,
-  save
-} = require('./lib/login')
+const { login, openContract, openBills } = require('./lib/requests')
+const { inventoryBills, save } = require('./lib/bills')
 
 module.exports = new BaseKonnector(start)
 
@@ -15,7 +10,7 @@ function start(fields) {
     .then($ => openContract($, 0))
     .then($ => openBills($))
     .then($ => inventoryBills($))
-    .then(entries => save(entries, fields.folderPath))
+    .then(([$, entries]) => save($, entries, fields.folderPath))
     .catch(err => {
       if (vendorIsDown(err)) {
         log('error', err)
@@ -42,8 +37,8 @@ function isRequestErr(err) {
 function vendorIsDown(err) {
   return (
     (err instanceof errors.StatusCodeError &&
-      parseInt(err.statusCode / 100) == 5) ||
+      parseInt(err.statusCode / 100) === 5) ||
     (err instanceof errors.RequestError &&
-      (err.error.code == 'ENOTFOUND' || err.error.code == 'ECONNRESET'))
+      (err.error.code === 'ENOTFOUND' || err.error.code === 'ECONNRESET'))
   )
 }
